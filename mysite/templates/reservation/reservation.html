@@ -1,0 +1,56 @@
+{% extends 'mysite/base.html' %}
+
+{% load static %}
+
+{% block js %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+  <script src="{% static 'edubarber/js/scripts.js' %}"></script>
+{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+  <link rel="stylesheet" href="{% static 'edubarber/css/reservastyle.css' %}">
+{% endblock %}
+
+
+{% block contenido %}
+
+<div class="div">
+    <!-- Navbar -->
+  <nav class="navbar">
+    <div class="inner-width">
+      <a href="/" class="logo"></a>
+      <button class="menu-toggler">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="navbar-menu">
+        <a href="#home">Inicio</a>
+
+        <!-- Comandos de django para que el usuario pueda iniciar sesión y desloguearse. -->
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Cerrar sesión</a>
+        
+        <!-- Comando para que aparezca el username en el navbar-->
+        <a href="#"> @{{ user.username }}</a>
+
+        {% else %}
+        
+        <a href="{% url 'login' %}">Iniciar sesión</a>
+        {% endif %}
+
+        
+
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+
+<!-- Go Top BTN -->
+<button class="goTop fas fa-arrow-up"></button>
+{% endblock %}
